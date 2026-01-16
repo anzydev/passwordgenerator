@@ -1,0 +1,515 @@
+/* ===== Design System - Calm, Professional Colors ===== */
+:root {
+    /* Light theme - soft grays */
+    --bg-page: #f5f7fa;
+    --bg-card: #ffffff;
+    --bg-input: #f0f2f5;
+    --bg-button: #e8eaed;
+    --bg-button-hover: #d3d6db;
+
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+    --text-muted: #9ca3af;
+    --text-disabled: #c4c9d1;
+
+    --border: #e5e7eb;
+    --border-focus: #22c55e;
+
+    /* Green accent - consistent */
+    --accent: #22c55e;
+    --accent-hover: #16a34a;
+    --accent-light: #dcfce7;
+
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --error: #dc2626;
+    --shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="dark"] {
+    /* Soft dark backgrounds - easy on the eyes */
+    --bg-page: #1a1d23;
+    --bg-card: #23272f;
+    --bg-input: #2c313a;
+    --bg-button: #343a45;
+    --bg-button-hover: #3f4654;
+
+    /* Readable light text */
+    --text-primary: #e8eaed;
+    --text-secondary: #9ea4ae;
+    --text-muted: #6b7280;
+    --text-disabled: #4b5563;
+
+    /* Clear borders for input separation */
+    --border: #3b4252;
+    --border-focus: #4ade80;
+
+    /* Green accent - consistent */
+    --accent: #4ade80;
+    --accent-hover: #22c55e;
+    --accent-light: #1a3a2a;
+
+    --success: #4ade80;
+    --warning: #fbbf24;
+    --error: #f87171;
+    --shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+}
+
+/* ===== Reset ===== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg-page);
+    color: var(--text-primary);
+    min-height: 100vh;
+    line-height: 1.5;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* ===== App Layout ===== */
+.app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+}
+
+/* ===== Theme Toggle ===== */
+.theme-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+.theme-toggle:hover {
+    background: var(--bg-button);
+    color: var(--text-primary);
+    transform: rotate(15deg);
+}
+
+.theme-toggle:active {
+    transform: rotate(30deg) scale(0.95);
+}
+
+.theme-toggle svg {
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover svg {
+    transform: rotate(-15deg);
+}
+
+/* ===== Time Display ===== */
+.time-display {
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+.time {
+    font-weight: 500;
+    margin-right: 0.5rem;
+}
+
+.date {
+    opacity: 0.8;
+}
+
+/* ===== Main Card ===== */
+.card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: var(--shadow);
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+}
+
+/* ===== Password Display ===== */
+.password-container {
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.password {
+    flex: 1;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.1rem;
+    word-break: break-all;
+    color: var(--text-primary);
+    background: transparent;
+    line-height: 1.4;
+}
+
+.password-warning {
+    flex: 1;
+    color: #dc2626;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.password-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.btn-icon {
+    width: 38px;
+    height: 38px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+/* Copy button - scale animation */
+.btn-copy:hover:not(:disabled) {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+    transform: scale(1.1);
+}
+
+.btn-copy:active:not(:disabled) {
+    transform: scale(0.95);
+}
+
+/* Regenerate button - spin animation */
+.btn-regenerate:hover:not(:disabled) {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+}
+
+.btn-regenerate svg {
+    transition: transform 0.4s ease;
+}
+
+.btn-regenerate:hover:not(:disabled) svg {
+    transform: rotate(180deg);
+}
+
+.btn-regenerate:active:not(:disabled) svg {
+    transform: rotate(360deg);
+}
+
+.btn-icon:disabled {
+    opacity: 0.5;
+    color: var(--text-disabled);
+    cursor: not-allowed;
+    background: var(--bg-input);
+}
+
+.btn-icon.copied {
+    background: var(--success);
+    border-color: var(--success);
+    color: white;
+    animation: copyPulse 0.3s ease;
+}
+
+@keyframes copyPulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* ===== Strength Indicator ===== */
+.strength {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.strength-bar {
+    flex: 1;
+    height: 6px;
+    background: var(--bg-input);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.strength-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.strength-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    min-width: 60px;
+    text-align: right;
+}
+
+/* ===== Control Groups ===== */
+.control-group {
+    margin-bottom: 1.25rem;
+}
+
+.control-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 0.625rem;
+}
+
+/* ===== Length Control ===== */
+.length-control {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-adjust {
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg-button);
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s ease;
+    user-select: none;
+}
+
+/* +/- buttons - press down animation */
+.btn-adjust:hover:not(:disabled) {
+    background: var(--bg-button-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-adjust:active:not(:disabled) {
+    transform: translateY(1px);
+    box-shadow: none;
+}
+
+.btn-adjust:disabled {
+    opacity: 0.5;
+    color: var(--text-disabled);
+    cursor: not-allowed;
+    background: var(--bg-input);
+}
+
+.length-input {
+    width: 70px;
+    height: 40px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg-input);
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.15s ease;
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+.length-input::-webkit-outer-spin-button,
+.length-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.length-input:focus {
+    border-color: var(--border-focus);
+}
+
+/* ===== Character Type Toggles ===== */
+.toggles {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.625rem;
+}
+
+.toggle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--bg-card);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Toggle buttons - lift animation with shadow */
+.toggle:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.toggle:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.toggle.active {
+    background: var(--accent-light);
+    border-color: var(--accent);
+}
+
+.toggle.active:hover {
+    box-shadow: 0 4px 12px var(--accent-light);
+}
+
+.toggle-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.toggle-desc {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.toggle.active .toggle-label {
+    color: var(--accent);
+}
+
+/* ===== Footer ===== */
+.footer {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* ===== Toast ===== */
+.toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--text-primary);
+    color: var(--bg-page);
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    animation: slideUp 0.2s ease;
+    z-index: 1000;
+}
+
+.toast svg {
+    color: var(--success);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 520px) {
+    .card {
+        padding: 1.5rem;
+    }
+
+    .title {
+        font-size: 1.25rem;
+    }
+
+    .password {
+        font-size: 0.95rem;
+    }
+
+    .toggles {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 520px) {
+    .toggles {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* ===== Selection ===== */
+::selection {
+    background: var(--accent);
+    color: white;
+}
