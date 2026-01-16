@@ -259,7 +259,6 @@ function App() {
 
             {/* Footer */}
             <footer className="footer">
-                Passwords are generated locally using cryptographic randomness
             </footer>
 
             {/* Toast */}
